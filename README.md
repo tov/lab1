@@ -97,7 +97,7 @@ install it separately. There are a few steps to this:
 
     Mine reports Python 3.7.2, and yours should be similar.
 
- 4. Once Python is installed, we use Python’s package manager, Pip, to
+ 4. Once Python is installed, use Python’s package manager, Pip, to
     install some packages:
 
         $ pip3 install pipenv mypy
