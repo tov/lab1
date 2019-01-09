@@ -16,6 +16,9 @@ We need to install and configure several pieces of software:
 [PyCharm download]:
     https://www.jetbrains.com/clion/download
 
+[PyCharm install]:
+    https://www.jetbrains.com/help/pycharm/install-and-set-up-pycharm.html#install-PyCharm
+
 [github.com]:
     https://github.com/
 
@@ -28,12 +31,15 @@ We need to install and configure several pieces of software:
 [Homebrew]:
     https://brew.sh/
 
+[Chocolatey]:
+    https://chocolatey.org/install
+
 [Git download]:
     https://git-scm.com/download/win
 
-## Installation & setup
+## Installation & Setup
 
-### First steps (all platforms)
+### First Steps (All Platforms)
 
  1. Start downloading the [PyCharm installer][PyCharm download].
 
@@ -47,12 +53,9 @@ We need to install and configure several pieces of software:
     website][JetBrains student]. Once the email arrives, follow the
     instructions to activate your account.
 
-### Platform-specific steps
+### Platform-specific Steps
 
 #### Mac OS
-
-Python **2.7** comes preinstalled, but we need 3.7, so you will have to
-install it separately. There are a few steps to this:
 
  1. Mac OS automatically installs its developer tools, including Git,
     when you attempt to use it from the command line for the first time.
@@ -97,6 +100,9 @@ install it separately. There are a few steps to this:
 
     Mine reports Python 3.7.2, and yours should be similar.
 
+    (Note Mac OS X comes with a `python` executable already installed,
+    but that’s Python **2.7**, and we need **3.7**.)
+
  4. Once Python is installed, use Python’s package manager, Pip, to
     install some packages:
 
@@ -115,135 +121,138 @@ install it separately. There are a few steps to this:
     into the Applications folder. Then you can eject and delete the
     .dmg.
 
- 6. Launch PyCharm for the first time. It will ask you about several
-    settings; for all of them, the defaults are fine.
+#### Windows
 
-### Last steps (all platforms)
+ 1. The first step is to install Chocolatey, which is a package manager
+    for Windows that knows how to install Python (among other things).
+    Follow the instructions [here][Chocolatey].
 
-PyCharm plugins:
+ 2. Once Chocolatey is installed, we can use it to install Python and
+    Git. As for installing Chocolatey, you will need to use an
+    administrator command shell, but you should close and reopen it
+    first. Then run the command:
 
- - TOML
- - mypy
+        > choco install -y python git
 
-## Downloads
+    (To run a shell command, don't type the `>`, and do press return
+    afterward. By convention, `>` stands for the prompt, which will
+    actually be something like `C:\Windows\system32>`.)
 
-### Mac OS
+    To confirm that the correct versions of Python and Git are now
+    installed, close your adminstrator command prompt and open a new
+    (non-adminstrator) command prompt. Run:
 
-You will need to download:
+        > py --version
 
-  - Our custom [SDL2 disk image][SDL2 Mac]
+    Mine reports Python 3.7.2, and yours should be similar.
 
-### Windows
+    Then run:
 
-You will need to download:
+        > git --version
 
-   - Our custom [installer for MinGW-w64 with SDL2][MinGW]
+    Mine says 2.20.1.windows.1, and your should be similar.
 
-   - [Git installer][Git download]
+ 3. Once Python is installed, use Python’s package manager, Pip, to
+    install some packages:
 
-### Linux, etc.
+        $ py -m pip install pipenv mypy
 
-Make sure you have Git and a working C++14 toolchain installed. You
-should also install the development packages for SDL2, SDL2_image,
-SDL2_ttf, and SDL2_mixer.
+    During installation, Pip will print some warnings that some
+    directory (`C:\Python37\Scripts`, in my case) is “not on PATH.”
+    This means that the installed programs cannot be run just by typing
+    their names alone, but that you have to specify the exact location.
+    In any case, take note of the installation path, as you may need it
+    later when configuring PyCharm.
 
-## Setup
+    Once the installation has completed, confirm that it installed by
+    running
 
-### Mac OS
+        $ py -m pipenv --version
+        $ py -m mypy --version
 
-Mac OS automatically installs its toolchain, including Git, when you
-attempt to use it from the command line for the first time; you will
-still have to install the SDL2 libraries yourself.
+    Mine reports version 2018.11.26 for pipenv and version 0.650 for
+    mypy; yours should be similar.
 
- 1. Thus, to install developer tools, run the *Terminal* program (from
-    `Applications/Utilities`) to get a command prompt. At the prompt,
-    type
+ 4. Install PyCharm from the .exe installer that you downloaded earlier.
+    The installer will give you several options to configure. You may
+    want to select these three:
 
-        clang
+      - 64-bit launcher: to create an icon to start PyCharm
 
-    and press return. If it prints `clang: error: no input files` then you
-    have it installed already. Otherwise, a dialog box will pop up and offer
-    to install the command-line developer tools for you. Say yes.
+      - Add “Open Folder as Project”: to allow you to open project
+        directories easily
 
-    (Alternatively, you can install the latest version of *Command Line
-    Tools for OS X* manually [from Apple][CLT], or install *XCode* from
-    the App Store.)
+      - .py: to allow you to open Python files in PyCharm by double
+        clicking them
 
- 2. Once you have the developer tools installed, you need to install
-    the SDL2 libraries. Open the [`SDL2-all.dmg`][SDL2 Mac] disk image
-    and drag the four frameworks into the linked `/Library/Frameworks`
-    directory. You may have to authenticate as an administrator.
+    There is no need to change the Start Menu folder.
 
-### Windows
+#### Linux
 
-On Windows, you need to install MinGW-w64 (the C++ compiler) and Git
-separately:
+ 1. Using your distribution’s package manager, install the packages for
+    the latest avaiable releases of Git, GCC/G++, Make, Python 3.x, and
+    Pip. On Ubuntu, this might look something like:
 
- 1. Run the [`MinGW-SDL2.exe` installer][MinGW] and follow the prompts
-    to install MinGW—w64. You should usually install it to `C:\MinGW`,
-    but wherever you install it, take note, as you will have to
-    configure CLion to find it later.
+        $ sudo apt-get update
+        $ sudo apt-get install build-essential git python3 python3-pip python3-dev
 
- 2. Run the [Git installer][Git download]. Click “Next” for each
-    question until “Adjusting your PATH environment” appears. Select
-    “Use Git from the Windows Command Prompt” instead of the default
-    option. Then continue clicking “Next” until the installation
-    completes.
+    There should be instructions for your distribution.
 
-### All platforms
+    To confirm that the correct version of Python is now installed, run:
 
-On all platforms you will need to follow these steps to set up the CLion
-IDE:
+        $ python3 --version
 
- 3. Run the [CLion installer][CLion download]—defaults should be fine.
-    (Windows: Check all of the “Create associations” boxes when they
-    appear.)
+    Mine reports Python 3.7.2, and yours should be similar.
 
- 4. Windows only: Set the toolchain in CLion to the location where you
-    installed MinGW. The folder you select should contain subfolders
-    with names like `bin` and `lib`. Ignore any warnings about version
-    numbers.
+ 2. Once Python is installed, use Python’s package manager, Pip, to
+    install some packages:
 
-## GitHub Setup
+        $ pip3 install pipenv mypy
 
-Git is a source control tool that you’ll be learning more about later in
-this lab. In short, it keeps track of each version of your files, so
-that you can:
+    Once that has completed, confirm that it installed by running
 
-  - Go back to any previous version. This is useful because it means
-    that mistakes are easy to undo, and it’s safe to experiment.
+        $ python3 -m pipenv --version
+        $ python3 -m mypy --version
 
-  - Have multiple versions (*branches*) simultaneously. You may use
-    separate branches for different features you are developing or ideas
-    you are trying, so that you can switch between them without them
-    interfering with one another. This also allows multiple developers
-    to work on the same project concurrently without stepping on each
-    other’s toes.
+    Mine reports version 2018.11.26 for pipenv and version 0.650 for
+    mypy; yours should be similar.
 
-  - Copy changes from one version to another. For example, if you are
-    happy with a feature that you developed in a *feature branch*, then
-    you can copy the changes into the main (*master*) branch.
+ 3. Install PyCharm. There are some instructions [here][PyCharm
+    install].
 
-GitHub is a service that hosts Git repositories (where all the versions
-are stored) online to facilitate collaboration. In particular, you will
-(probably) use GitHub when handing in your homework. Thus, you will need
-a GitHub account, and we will need to know your username:
+### Last Steps (All Platforms)
 
-1.  If you don’t already have a GitHub account, go to
-    [github.com](https://github.com/) and sign up for one.
+ 1. Launch PyCharm for the first time. You probably won't have settings
+    to import, and for the settings it asks you about, the defaults are
+    fine.
 
-2.  Let us know your GitHub username by registering it
-    [here](http://goo.gl/forms/fjlXl51Lsq).
+ 2. There are a few PyCharm plugins that will make some things easier
+    for us later. On initial the PyCharm screen (which you'll see when
+    you don't have a project open), there is a “Configure” drop-down
+    at the bottom; click that, and choose the “Plugins” option.
+
+    On the Marketplace tab (which is open initially), search for and
+    install these plugins:
+
+      - .ignore
+      - Mypy
+      - Toml
+
+    Then, go to the Installed tab, and confirm that the Git Integration
+    plugin is installed. (If not, install it on the Marketplace tab.)
+
+    Click OK to exit the plugins configuration, and then restart PyCharm
+    so that the plugins can take effect.
 
 ## Testing That Everything Works
 
 Once we have everything set up, the main task for this lab is to make
-sure everything works. The code for this lab is a CLion project hosted
-on GitHub. In this section, you will make your own copy (*fork*) of the
-project on GitHub, make a local copy to work on using CLion, make a
-small change, and then push your changes back to GitHub. (Note that for
-your homework, you **will not** fork, but will be given a private
-repository to use.
+sure it actually works for you. The code for this lab is a Python
+project hosted on GitHub. In this section, you will make your own copy
+(*fork*) of the project on GitHub, make a local copy to work on using
+PyCharm, make a small change, and then push your changes back to GitHub.
+(Note that for your homework, you **will not** fork, but will be given a
+private repository to use.)
 
 1. Go to the [lab repo page](https://github.com/eecs230/lab1) and click
    “Fork” in the upper right. (If it asks where to fork it, choose your
@@ -323,7 +332,30 @@ repository to use.
    GitHub. Go back to your repo page, navigate to `src/lab1.cpp`, and
    confirm that your name has replaced `"world"`.
 
-## The Low-down on Git Branching
+## Understanding Git
+
+Git is a source control tool that you’ll be learning more about later in
+this lab. In short, it keeps track of each version of your files, so
+that you can:
+
+  - Go back to any previous version. This is useful because it means
+    that mistakes are easy to undo, and it’s safe to experiment.
+
+  - Have multiple versions (*branches*) simultaneously. You may use
+    separate branches for different features you are developing or ideas
+    you are trying, so that you can switch between them without them
+    interfering with one another. This also allows multiple developers
+    to work on the same project concurrently without stepping on each
+    other’s toes.
+
+  - Copy changes from one version to another. For example, if you are
+    happy with a feature that you developed in a *feature branch*, then
+    you can copy the changes into the main (*master*) branch.
+
+GitHub is a service that hosts Git repositories (where all the versions
+are stored) online to facilitate collaboration. In particular, you will
+(probably) use GitHub when handing in your homework. Thus, you will need
+a GitHub account, and we will need to know your username:
 
 If you have time remaining, start this interactive [git branching
 tutorial](http://pcottle.github.io/learnGitBranching/). If you run out
