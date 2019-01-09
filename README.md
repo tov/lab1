@@ -98,29 +98,32 @@ install it separately. There are a few steps to this:
     Mine reports Python 3.7.2, and yours should be similar.
 
  4. Once Python is installed, we use Python’s package manager, Pip, to
-    install the `pipenv` package, like so:
+    install some packages:
 
-        $ pip3 install pipenv
+        $ pip3 install pipenv mypy
 
     Once that has completed, confirm that it installed by running
 
         $ pipenv --version
+        $ mypy --version
 
-    Mine reports version 2018.11.26, and yours should be similar.
+    Mine reports version 2018.11.26 for pipenv and version 0.650 for
+    mypy; yours should be similar.
 
-  5. Install PyCharm from the .dmg that you downloaded earlier.
-     Double-click the .dmg to open it, and then drag the PyCharm app
-     into the Applications folder. Then you can eject and delete the
-     .dmg.
+ 5. Install PyCharm from the .dmg that you downloaded earlier.
+    Double-click the .dmg to open it, and then drag the PyCharm app
+    into the Applications folder. Then you can eject and delete the
+    .dmg.
 
-  6. Launch PyCharm for the first time. It will ask you about several
-     settings; for all of them, the defaults are fine.
+ 6. Launch PyCharm for the first time. It will ask you about several
+    settings; for all of them, the defaults are fine.
 
 ### Last steps (all platforms)
 
 PyCharm plugins:
 
  - TOML
+ - mypy
 
 ## Downloads
 
