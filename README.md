@@ -1,36 +1,128 @@
 # EECS 230 Lab 1
 
-Before we can get started we need to install our development
-environment. You’ll need a C++ compiler, the CLion IDE, the SDL2
-graphics libraries, and Git for version control. In this lab you will
-also create a GitHub account (if you don’t already have one) and test
-your toolchain setup.
+This lab will guide you in setting up your working environment for the
+quarter. By the end you should be able to modify and run a simple Python
+program that outputs “Hello, world!” to the screen; more importantly,
+you will be ready for future assignments.
 
-[SDL2 Mac]:
-    https://users.eecs.northwestern.edu/~jesse/course/eecs211/files/SDL2-all.dmg
+We need to install and configure several pieces of software:
 
-[MinGW]:
-    https://users.eecs.northwestern.edu/~jesse/course/eecs211/files/MinGW-SDL2.exe
+  - Python **3.7** (a programming language implementation needed to run
+    your programs)
 
-[CLion download]:
+  - PyCharm (an integrated development environment, which you will use
+    to edit your programs)
+
+[PyCharm download]:
     https://www.jetbrains.com/clion/download
 
-[Git download]:
-    https://git-scm.com/download/win
-
-[CLT]:
-    https://developer.apple.com/downloads/
+[github.com]:
+    https://github.com/
 
 [JetBrains student]:
     https://www.jetbrains.com/shop/eform/students
 
+[CLT]:
+    https://developer.apple.com/downloads/
+
+[Homebrew]:
+    https://brew.sh/
+
+[Git download]:
+    https://git-scm.com/download/win
+
+## Installation & setup
+
+### First steps (all platforms)
+
+ 1. Start downloading the [PyCharm installer][PyCharm download].
+
+ 2. If you don’t already have a GitHub account, go to [github.com] and
+    sign up for one.
+
+ 3. Let us know your GitHub username by registering it
+    [here](http://goo.gl/forms/fjlXl51Lsq).
+
+ 4. Register for a student JetBrains account [on their
+    website][JetBrains student]. Once the email arrives, follow the
+    instructions to activate your account.
+
+### Platform-specific steps
+
+#### Mac OS
+
+Python **2.7** comes preinstalled, but we need 3.7, so you will have to
+install it separately. There are a few steps to this:
+
+ 1. Mac OS automatically installs its developer tools, including Git,
+    when you attempt to use it from the command line for the first time.
+    Thus, to install developer tools, run the *Terminal* program (from
+    `/Applications/Utilities`) to get a command prompt. At the prompt,
+    run this command:
+
+        $ clang
+
+    (To run a command, don't type the `$`, and do press return
+    afterward. By convention, `$` stands for the prompt, which will
+    actually be something like `tov@mannequin:~$`.)
+
+    If it prints `clang: error: no input files` then you have it
+    installed already. Otherwise, a dialog box will pop up and offer to
+    install the command-line developer tools for you. Say yes.
+
+    (Alternatively, you can install the latest version of *Command Line
+    Tools for OS X* manually [from Apple][CLT], or install *XCode* from
+    the App Store.)
+
+ 2. The next step is to install [Homebrew], which is a package manager
+    for installing a variety of Unix programs on OS X. To do so, run
+    this command into your terminal:
+
+        $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+    To check that Homebrew is installed, run
+
+        $ brew --version
+
+    at the command prompt. Mine reports version 1.8.6; yours should be
+    similar.
+
+ 3. Now we can use Homebrew to install Python. The command is:
+
+        $ brew install python
+
+    To confirm that the correct version of Python is now installed, run
+
+        $ python3 --version
+
+    Mine reports Python 3.7.2, and yours should be similar.
+
+ 4. Once Python is installed, we use Python’s package manager, Pip, to
+    install the `pipenv` package, like so:
+
+        $ pip3 install pipenv
+
+    Once that has completed, confirm that it installed by running
+
+        $ pipenv --version
+
+    Mine reports version 2018.11.26, and yours should be similar.
+
+  5. Install PyCharm from the .dmg that you downloaded earlier.
+     Double-click the .dmg to open it, and then drag the PyCharm app
+     into the Applications folder. Then you can eject and delete the
+     .dmg.
+
+  6. Launch PyCharm for the first time. It will ask you about several
+     settings; for all of them, the defaults are fine.
+
+### Last steps (all platforms)
+
+PyCharm plugins:
+
+ - TOML
+
 ## Downloads
-
-For all platforms, you will need:
-
-  - [CLion installer][CLion download]
-
-Additional installation varies by platform.
 
 ### Mac OS
 
@@ -99,11 +191,6 @@ separately:
 
 On all platforms you will need to follow these steps to set up the CLion
 IDE:
-
- 1. Register for a student JetBrains account [on their
-    website][JetBrains student].
-
- 2. Follow the instructions in your email to activate your account.
 
  3. Run the [CLion installer][CLion download]—defaults should be fine.
     (Windows: Check all of the “Create associations” boxes when they
